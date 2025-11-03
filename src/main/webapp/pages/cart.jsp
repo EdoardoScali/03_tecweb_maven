@@ -26,7 +26,7 @@
 		<div id="main" class="clear">
 
 			<jsp:useBean id="catalogue" class="it.unibo.tecweb.beans.Catalogue" scope="session" />
-			<jsp:useBean id="cart" class=it.unibo.tecweb.beans.Cart scope="session"></jsp:useBean>
+			<jsp:useBean id="cart" class="it.unibo.tecweb.beans.Cart" scope="session"></jsp:useBean>
 			
 			<%
 				String id = request.getParameter("id");
@@ -44,8 +44,8 @@
 						Integer quantity =  Integer.parseInt(request.getParameter("quantity") );
 						catalogue.addItem(item, quantity);
 					}
-					else if ( request.getParameter("remove") != null && request.getParameter("remove").equals("ok") ) {
-						catalogue.emptyItem(id);
+					else if ( request.getParameter("ok") != null && request.getParameter("add").equals("ok") ) {
+						// catalogue.emptyItem(id);
 						Item item = new Item();
 						item.setId(request.getParameter("id"));
 						int quantity = catalogue.getQuantity(item);						
@@ -99,7 +99,7 @@
 							<td><%= anItem.getPrice() %> &#8364;</td>
 							<td><%= catalogue.getQuantity(anItem) %></td>
 							<td>
-								<a href="?remove=ok&id=<%= anItem.getId() %>">
+								<a href="?add=ok&id=<%= anItem.getId() %>">
 								<button>Add to chart</button></a>
 							</td>
 						</tr>
