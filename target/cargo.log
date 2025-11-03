@@ -1,0 +1,4 @@
+[11:28:16.167][debug][edDeployerDeployMojo] Resolved artifact and dependencies: [file:/C:/Users/Edoardo/.m2/repository/org/codehaus/cargo/cargo-core-container-tomcat/1.10.10/cargo-core-container-tomcat-1.10.10.jar]
+[11:28:16.168][info][edDeployerDeployMojo] Resolved container artifact org.codehaus.cargo:cargo-core-container-tomcat:jar:1.10.10 for container tomcat9x
+[11:28:16.424][debug][talledLocalContainer] Parsed Tomcat version = [9.0.22]
+[11:28:16.429][info][stalledLocalDeployer] Deploying [C:\FILES\tec_web\lab3\03_tecweb_maven\target/tecweb-3.war] to [C:\MY_PROGRAMS\apache-tomcat\apache-tomcat-9.0.22\webapps]...

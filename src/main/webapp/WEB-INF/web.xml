@@ -1,0 +1,66 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+
+  <context-param>
+    <param-name>name</param-name>
+    <param-value>TecWeb</param-value>
+  </context-param>
+  <context-param>
+    <param-name>logFilePath</param-name>
+    <param-value>sales.log</param-value>
+  </context-param>
+  
+  <servlet>
+  	<servlet-name>ForwardServlet</servlet-name>
+  	<display-name>ForwardServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.unibo.tecweb.servlets.ForwardServlet</servlet-class>
+    <!--  -->
+    <init-param>
+      <param-name>homeURL</param-name>
+      <param-value>/pages/home.jsp</param-value>
+    </init-param>
+    
+  </servlet>
+  <servlet>
+  	<servlet-name>StatisticheServlet</servlet-name>
+  	<display-name>StatisticheServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.unibo.tecweb.servlets.StatisticheServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ForwardServlet</servlet-name>
+  	<url-pattern>/forwardServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StatisticheServlet</servlet-name>
+  	<url-pattern>/statisticheServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Welcome pages -->
+  <!-- pleonastico: tomcat "tenta" in automatico le index.html e index.jsp -->
+	
+  <welcome-file-list>
+	<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+		
+  <!-- Handle exceptions and errors -->
+	
+  <error-page>
+	<error-code>404</error-code>
+	<location>/errors/notfound.html</location>
+  </error-page>
+
+  <!-- Gestiremo questo direttamente nelle pagine JSP
+  <error-page>
+	<exception-type>java.lang.Exception</exception-type>
+	<location>/errors/exception.html</location>
+  </error-page>
+  -->
+</web-app>
+
