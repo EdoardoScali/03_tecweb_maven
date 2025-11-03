@@ -8,7 +8,7 @@
 <%@ page import="it.unibo.tecweb.beans.Catalogue"%>
 <%@ page import="it.unibo.tecweb.beans.Item"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="it.unibo.tecweb.beans.Item" %>
+
 <%@ page import="it.unibo.tecweb.beans.Cart" %>
 
 <!-- codice html restituito al client -->
@@ -25,7 +25,7 @@
 	
 		<div id="main" class="clear">
 
-			<jsp:useBean id="catalogue" class="it.unibo.tecweb.beans.Catalogue" scope="session" />
+			<jsp:useBean id="catalogue" class="it.unibo.tecweb.beans.Catalogue" scope="application" />
 			<jsp:useBean id="cart" class="it.unibo.tecweb.beans.Cart" scope="session"></jsp:useBean>
 			
 			<%
@@ -44,12 +44,12 @@
 						Integer quantity =  Integer.parseInt(request.getParameter("quantity") );
 						catalogue.addItem(item, quantity);
 					}
-					else if ( request.getParameter("ok") != null && request.getParameter("add").equals("ok") ) {
+					else if ( request.getParameter("addCart") != null && request.getParameter("addCart").equals("ok") ) {
 						// catalogue.emptyItem(id);
 						Item item = new Item();
 						item.setId(request.getParameter("id"));
-						int quantity = catalogue.getQuantity(item);						
-						cart.put(item, quantity);
+												
+						cart.put(item, 1);
 					}
 					
 				}
@@ -99,7 +99,7 @@
 							<td><%= anItem.getPrice() %> &#8364;</td>
 							<td><%= catalogue.getQuantity(anItem) %></td>
 							<td>
-								<a href="?add=ok&id=<%= anItem.getId() %>">
+								<a href="?addCart=ok&id=<%= anItem.getId() %>">
 								<button>Add to chart</button></a>
 							</td>
 						</tr>
