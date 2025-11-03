@@ -8,6 +8,8 @@
 <%@ page import="it.unibo.tecweb.beans.Catalogue"%>
 <%@ page import="it.unibo.tecweb.beans.Item"%>
 <%@ page import="java.util.Map"%>
+<%@ page import="it.unibo.tecweb.beans.Item" %>
+<%@ page import="it.unibo.tecweb.beans.Cart" %>
 
 <!-- codice html restituito al client -->
 <html>
@@ -23,7 +25,8 @@
 	
 		<div id="main" class="clear">
 
-			<jsp:useBean id="catalogue" class="it.unibo.tecweb.beans.Catalogue" scope="application" />
+			<jsp:useBean id="catalogue" class="it.unibo.tecweb.beans.Catalogue" scope="session" />
+			<jsp:useBean id="cart" class=it.unibo.tecweb.beans.Cart scope="session"></jsp:useBean>
 			
 			<%
 				String id = request.getParameter("id");
@@ -43,6 +46,10 @@
 					}
 					else if ( request.getParameter("remove") != null && request.getParameter("remove").equals("ok") ) {
 						catalogue.emptyItem(id);
+						Item item = new Item();
+						item.setId(request.getParameter("id"));
+						int quantity = catalogue.getQuantity(item);						
+						cart.put(item, quantity);
 					}
 					
 				}
@@ -57,12 +64,24 @@
 						<th style="width: 33%">Price</th>
 						<th style="width: 33%">Quantity</th> 
 					</tr>
+					<%
+					for(Item item: cart.getItems()){
+					%>
+						<tr>
+							<td><%= item.getId() %></td>
+							<td><%= item.getPrice() %></td>
+							<td><%= cart.getQuantity(item) %></td>
+							
+						</tr>
+					<%
+					}
+					%>
 					
 				</table>
 		
 			</div>
 			
-			<div id="right" style="float: left; width: 48%">
+			<div id="left" style="float: left; width: 48%">
 
 				<p>Current catalogue:</p>
 				<table class="formdata">
