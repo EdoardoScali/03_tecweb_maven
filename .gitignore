@@ -1,1 +1,19 @@
+# Cartella di output di Maven e file generati
 target/
+pom.xml.tag
+pom.xml.bak
+release.properties
+
+# File specifici dell'IDE (es. Eclipse, IntelliJ, VS Code)
+.metadata
+.project
+.classpath
+*.iml
+.idea/
+.vscode/
+
+# File di log
+*.log
+
+# File temporanei
+*~
