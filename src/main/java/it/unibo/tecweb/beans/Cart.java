@@ -20,7 +20,7 @@ public class Cart implements Serializable {
 	}
 
 	public int getQuantity(Item item) {
-		return items.get(item);
+		return items.getOrDefault(item, 0);
 	}
 
 	public void put(Item item, int quantity) {

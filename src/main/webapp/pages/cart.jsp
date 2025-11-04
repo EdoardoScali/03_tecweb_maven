@@ -48,8 +48,12 @@
 						// catalogue.emptyItem(id);
 						Item item = new Item();
 						item.setId(request.getParameter("id"));
-												
-						cart.put(item, 1);
+						int cartQuantity = cart.getQuantity(item);						
+						cart.put(item, cartQuantity + 1);
+						int catalogueQuantity = catalogue.getQuantity(item) - 1;
+						catalogue.emptyItem(item);
+						catalogue.addItem(item, catalogueQuantity);
+						
 					}
 					
 				}
