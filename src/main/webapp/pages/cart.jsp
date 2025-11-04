@@ -48,11 +48,17 @@
 						// catalogue.emptyItem(id);
 						Item item = new Item();
 						item.setId(request.getParameter("id"));
-						int cartQuantity = cart.getQuantity(item);						
-						cart.put(item, cartQuantity + 1);
-						int catalogueQuantity = catalogue.getQuantity(item) - 1;
-						catalogue.emptyItem(item);
-						catalogue.addItem(item, catalogueQuantity);
+						
+						if(catalogue.getQuantity(item) > 0){
+							int cartQuantity = cart.getQuantity(item);						
+							cart.put(item, cartQuantity + 1);
+
+							int catalogueQuantity = catalogue.getQuantity(item) - 1;
+							catalogue.emptyItem(item);
+							catalogue.addItem(item, catalogueQuantity);
+							
+						}
+						
 						
 					}
 					
@@ -73,7 +79,7 @@
 					%>
 						<tr>
 							<td><%= item.getId() %></td>
-							<td><%= item.getPrice() %></td>
+							<td><%= item.getPrice() %> &#8364;</td>
 							<td><%= cart.getQuantity(item) %></td>
 							
 						</tr>
