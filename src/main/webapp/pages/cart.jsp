@@ -32,13 +32,13 @@
 				String id = request.getParameter("id");
 	
 				if ( id != null && ! id.equals("") ) {
-
+					Item item = null;
 					if ( id.contains(" ") ) {
 						throw new Exception("Blanks are not allowed in the description field!"); 					
 					}
 					
 					if ( request.getParameter("add") != null && request.getParameter("add").equals("submit item") ) {
-						Item item = new Item();
+						item = new Item();
 						item.setId( id );
 						item.setPrice( Double.parseDouble( request.getParameter("price") ) );
 						Integer quantity =  Integer.parseInt(request.getParameter("quantity") );
@@ -46,9 +46,7 @@
 					}
 					else if ( request.getParameter("addCart") != null && request.getParameter("addCart").equals("ok") ) {
 						// catalogue.emptyItem(id);
-						Item item = new Item();
-						item.setId(request.getParameter("id"));
-						
+												
 						if(catalogue.getQuantity(item) > 0){
 							int cartQuantity = cart.getQuantity(item);						
 							cart.put(item, cartQuantity + 1);
